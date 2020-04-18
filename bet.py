@@ -82,7 +82,6 @@ def take_bet(chips, player, dealer, deck):
     bet_500_rect = bet_500.get_rect()
     bet_500_rect.topleft = bet_500_pos
 
-
     # draw chip buttons on screen
     bj_settings.screen.blit(bet_5, bet_5_rect)
     bj_settings.screen.blit(bet_10, bet_10_rect)
