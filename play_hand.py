@@ -33,7 +33,15 @@ def play_hand(bet, chips, player, dealer, deck):
         bj_settings.screen.blit(pic, (pcardx, pcardy))
         pcardx += 75
 
-    gf.add_text('(H) to hit (S) to stand', font, bj_settings.screen, 600, 540, bj_settings.BLACK)
+    hit_button = pygame.image.load('images/hit.png')
+    hit_rect = hit_button.get_rect()
+    hit_rect.topleft = ((600, 500))
+    bj_settings.screen.blit(hit_button, (600, 500))
+
+    stand_button = pygame.image.load('images/stand.png')
+    stand_rect = stand_button.get_rect()
+    stand_rect.topleft = ((850, 500))
+    bj_settings.screen.blit(stand_button, (850, 500))
 
     dcardx, dcardy = (100, 100)
     dcard1 = pygame.image.load('images/' + str(dealer.cards[0]) + '.png')
@@ -82,48 +90,12 @@ def play_hand(bet, chips, player, dealer, deck):
                 pygame.quit()
                 sys.exit()
 
-            if event.type == pygame.KEYUP:
-                # check if player has blackjack
-                if player.value == 21:
-                    # blackjack text
-                    gf.add_text('Blackjack!!! You WIN!!', font, bj_settings.screen, 600, 460, bj_settings.BLACK)
-                    gf.add_text('Press space to continue', font, bj_settings.screen, 600, 500, bj_settings.BLACK)
-                    pygame.display.update()
-                    blackjack = True
-                    double_prize = True
-
-            # Game logic to allow to allow button presses on keyboard.
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE and double_prize is True:
-                    del player.cards[:]
-                    del dealer.cards[:]
-                    player.value = 0
-                    dealer.value = 0
-                    return bet * 2
-                if (event.key == pygame.K_SPACE and dealer.value == 21 or event.key == pygame.K_SPACE
-                        and player.value > 21 or event.key == pygame.K_SPACE and dealer_wins is True):
-                    del player.cards[:]
-                    del dealer.cards[:]
-                    player.value = 0
-                    dealer.value = 0
-                    return -bet
-                if event.key == pygame.K_SPACE and dealer.value > 21 or event.key == pygame.K_SPACE and player_wins \
-                        is True:
-                    del player.cards[:]
-                    del dealer.cards[:]
-                    player.value = 0
-                    dealer.value = 0
-                    return bet
-                if event.key == pygame.K_SPACE and push is True:
-                    del player.cards[:]
-                    del dealer.cards[:]
-                    player.value = 0
-                    dealer.value = 0
-                    return 0
-                if event.key == pygame.K_h and player.value < 22 and player.value != 21 and stand is False:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if hit_rect.collidepoint(event.pos) and player.value < 22 and player.value != 21 and stand is False:
+                    print('hit')
                     player.add_card(deck.deal())
                     bj_settings.screen.blit(pygame.image.load('images/' + str(player.cards[-1]) + '.png'),
-                                                 (pcardx, pcardy))
+                                            (pcardx, pcardy))
                     pcardx += 75
                     pygame.display.update()
 
@@ -133,7 +105,9 @@ def play_hand(bet, chips, player, dealer, deck):
                                     bj_settings.BLACK)
                         pygame.display.update()
                         player_bust = True
-                if event.key == pygame.K_s and player.value < 22 and blackjack is False and stand is False:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if stand_rect.collidepoint(event.pos) and player.value < 22 and blackjack is False and stand is False:
+                    print('stand')
                     dcardx += 75
                     bj_settings.screen.blit(pygame.image.load('images/' + str(dealer.cards[1]) + '.png'),
                                                  (dcardx, dcardy))
@@ -182,3 +156,44 @@ def play_hand(bet, chips, player, dealer, deck):
                                             bj_settings.BLACK)
                                 pygame.display.update()
                                 push = True
+
+
+            if event.type == pygame.MOUSEBUTTONUP:
+                # check if player has blackjack
+                if player.value == 21:
+                    # blackjack text
+                    gf.add_text('Blackjack!!! You WIN!!', font, bj_settings.screen, 600, 460, bj_settings.BLACK)
+                    gf.add_text('Press space to continue', font, bj_settings.screen, 600, 500, bj_settings.BLACK)
+                    pygame.display.update()
+                    blackjack = True
+                    double_prize = True
+
+            # Game logic to allow to allow button presses on keyboard.
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE and double_prize is True:
+                    del player.cards[:]
+                    del dealer.cards[:]
+                    player.value = 0
+                    dealer.value = 0
+                    return bet * 2
+                if (event.key == pygame.K_SPACE and dealer.value == 21 or event.key == pygame.K_SPACE
+                        and player.value > 21 or event.key == pygame.K_SPACE and dealer_wins is True):
+                    del player.cards[:]
+                    del dealer.cards[:]
+                    player.value = 0
+                    dealer.value = 0
+                    return -bet
+                if event.key == pygame.K_SPACE and dealer.value > 21 or event.key == pygame.K_SPACE and player_wins \
+                        is True:
+                    del player.cards[:]
+                    del dealer.cards[:]
+                    player.value = 0
+                    dealer.value = 0
+                    return bet
+                if event.key == pygame.K_SPACE and push is True:
+                    del player.cards[:]
+                    del dealer.cards[:]
+                    player.value = 0
+                    dealer.value = 0
+                    return 0
+
