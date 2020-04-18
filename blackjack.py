@@ -42,9 +42,5 @@ def play():
                     new_bet.take_bet(100, player, dealer, deck)
 
 
-
-
-
-
 if __name__ == '__main__':
     play()
