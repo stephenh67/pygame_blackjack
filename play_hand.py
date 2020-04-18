@@ -3,6 +3,7 @@ import pygame
 import sys
 import game_functions as gf
 import time
+import new_bet
 
 def play_hand(bet, chips, player, dealer, deck):
     """Play hand

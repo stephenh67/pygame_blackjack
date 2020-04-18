@@ -1,7 +1,7 @@
 import pygame
 import sys
 
-import bet
+import new_bet
 from cards import Hand, Deck
 from settings import Settings
 
@@ -40,7 +40,7 @@ def play():
                     player = Hand()
                     dealer = Hand()
                     deck = Deck()
-                    bet.take_bet(1000, player, dealer, deck)
+                    new_bet.take_bet(1000, player, dealer, deck)
 
 
 

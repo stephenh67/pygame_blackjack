@@ -82,6 +82,19 @@ def take_bet(chips, player, dealer, deck):
     bet_500_rect = bet_500.get_rect()
     bet_500_rect.topleft = bet_500_pos
 
+    # display card
+    display_card_1_pos = (150, 150)
+    display_card_1 = pygame.image.load('images/AC.png')
+    display_card_1_rect = display_card_1.get_rect()
+    display_card_1_rect.topleft = display_card_1_pos
+
+    # display card
+    display_card_2_pos = (850, 150)
+    display_card_2 = pygame.image.load('images/KH.png')
+    display_card_2_rect = display_card_2.get_rect()
+    display_card_2_rect.topleft = display_card_2_pos
+
+
     # draw chip buttons on screen
     bj_settings.screen.blit(bet_5, bet_5_rect)
     bj_settings.screen.blit(bet_10, bet_10_rect)
@@ -90,7 +103,8 @@ def take_bet(chips, player, dealer, deck):
     bj_settings.screen.blit(bet_100, bet_100_rect)
     bj_settings.screen.blit(bet_250, bet_250_rect)
     bj_settings.screen.blit(bet_500, bet_500_rect)
-
+    bj_settings.screen.blit(display_card_1, display_card_1_rect)
+    bj_settings.screen.blit(display_card_2, display_card_2_rect)
     pygame.display.update()
 
     # get events
