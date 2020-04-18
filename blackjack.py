@@ -1,6 +1,5 @@
 import pygame
 import sys
-
 import new_bet
 from cards import Hand, Deck
 from settings import Settings

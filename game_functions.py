@@ -1,4 +1,3 @@
-
 def add_text(text, font, surface, x, y, text_color):
     """
 

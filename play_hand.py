@@ -2,9 +2,7 @@ from settings import Settings
 import pygame
 import sys
 import game_functions as gf
-import game_over
 import time
-import new_bet
 
 def play_hand(bet, chips, player, dealer, deck):
     """Play hand
