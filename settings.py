@@ -17,3 +17,6 @@ class Settings:
         self.WHITE = (255, 255, 255)
         self.RED = (255, 0, 0)
         self.GREEN = (22, 84, 8)
+
+        self.play_button_width = 250
+        self.play_button_height = 250
