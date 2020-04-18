@@ -169,31 +169,35 @@ def play_hand(bet, chips, player, dealer, deck):
                     double_prize = True
 
             # Game logic to allow to allow button presses on keyboard.
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE and double_prize is True:
-                    del player.cards[:]
-                    del dealer.cards[:]
-                    player.value = 0
-                    dealer.value = 0
-                    return bet * 2
-                if (event.key == pygame.K_SPACE and dealer.value == 21 or event.key == pygame.K_SPACE
-                        and player.value > 21 or event.key == pygame.K_SPACE and dealer_wins is True):
-                    del player.cards[:]
-                    del dealer.cards[:]
-                    player.value = 0
-                    dealer.value = 0
-                    return -bet
-                if event.key == pygame.K_SPACE and dealer.value > 21 or event.key == pygame.K_SPACE and player_wins \
-                        is True:
-                    del player.cards[:]
-                    del dealer.cards[:]
-                    player.value = 0
-                    dealer.value = 0
-                    return bet
-                if event.key == pygame.K_SPACE and push is True:
-                    del player.cards[:]
-                    del dealer.cards[:]
-                    player.value = 0
-                    dealer.value = 0
-                    return 0
+            if event.type == pygame.MOUSEBUTTONUP and double_prize is True:
+                time.sleep(3)
+
+                del player.cards[:]
+                del dealer.cards[:]
+                player.value = 0
+                dealer.value = 0
+                return bet * 2
+            if event.type == pygame.MOUSEBUTTONUP and dealer.value == 21 or event.type == pygame.MOUSEBUTTONUP and \
+                    player.value > 21 or event.type == pygame.MOUSEBUTTONUP and dealer_wins is True:
+                time.sleep(3)
+                del player.cards[:]
+                del dealer.cards[:]
+                player.value = 0
+                dealer.value = 0
+                return -bet
+            if event.type == pygame.MOUSEBUTTONUP and dealer.value > 21 or event.type == pygame.MOUSEBUTTONUP and \
+                    player_wins is True:
+                time.sleep(3)
+                del player.cards[:]
+                del dealer.cards[:]
+                player.value = 0
+                dealer.value = 0
+                return bet
+            if event.type == pygame.MOUSEBUTTONUP and push is True:
+                time.sleep(3)
+                del player.cards[:]
+                del dealer.cards[:]
+                player.value = 0
+                dealer.value = 0
+                return 0
 
