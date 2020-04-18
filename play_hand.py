@@ -4,6 +4,7 @@ import sys
 import game_functions as gf
 import time
 
+
 def play_hand(bet, chips, player, dealer, deck):
     """Play hand
 
@@ -27,12 +28,15 @@ def play_hand(bet, chips, player, dealer, deck):
     gf.add_text(('Bet: ' + str(bet)), font, bj_settings.screen, 600, 30, bj_settings.BLACK)
 
     pcardx, pcardy = (600, 100)
+
     # Load the card images into the game.
     for card in player.cards:
         pic = pygame.image.load('images/' + str(card) + '.png')
         bj_settings.screen.blit(pic, (pcardx, pcardy))
         pcardx += 75
 
+
+    # hit and stand buttons
     hit_button = pygame.image.load('images/hit.png')
     hit_rect = hit_button.get_rect()
     hit_rect.topleft = ((600, 500))
@@ -43,6 +47,7 @@ def play_hand(bet, chips, player, dealer, deck):
     stand_rect.topleft = ((850, 500))
     bj_settings.screen.blit(stand_button, (850, 500))
 
+    # load dealer cards
     dcardx, dcardy = (100, 100)
     dcard1 = pygame.image.load('images/' + str(dealer.cards[0]) + '.png')
     dcard2 = pygame.image.load('images/' + str(dealer.cards[1]) + '.png')
@@ -105,12 +110,13 @@ def play_hand(bet, chips, player, dealer, deck):
                                     bj_settings.BLACK)
                         pygame.display.update()
                         player_bust = True
+
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if stand_rect.collidepoint(event.pos) and player.value < 22 and blackjack is False and stand is False:
                     print('stand')
                     dcardx += 75
                     bj_settings.screen.blit(pygame.image.load('images/' + str(dealer.cards[1]) + '.png'),
-                                                 (dcardx, dcardy))
+                                            (dcardx, dcardy))
                     pygame.display.update()
                     stand = True
 
@@ -132,9 +138,11 @@ def play_hand(bet, chips, player, dealer, deck):
                                         bj_settings.BLACK)
                             pygame.display.update()
                             dealer_bust = True
+
                     if dealer.value >= 17:
                         pygame.display.update()
                         hand_done = True
+
                     if dealer_bust is False and stand is True and player_bust is False \
                             and blackjack is False and hand_done is True:
                         if dealer.value <= 21 and player.value <= 21:
@@ -156,7 +164,6 @@ def play_hand(bet, chips, player, dealer, deck):
                                             bj_settings.BLACK)
                                 pygame.display.update()
                                 push = True
-
 
             if event.type == pygame.MOUSEBUTTONUP:
                 # check if player has blackjack
@@ -200,4 +207,3 @@ def play_hand(bet, chips, player, dealer, deck):
                 player.value = 0
                 dealer.value = 0
                 return 0
-
