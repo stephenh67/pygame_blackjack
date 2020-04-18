@@ -3,7 +3,7 @@ import play_hand as ph
 import pygame
 import sys
 from cards import Deck
-import game_functions as gf
+import game_over
 
 
 def take_bet(chips, player, dealer, deck):
@@ -18,7 +18,7 @@ def take_bet(chips, player, dealer, deck):
     bj_settings = Settings()
 
     if chips < 5:
-        gf.game_over()
+        game_over.game_over()
     bets_placed = False
 
     pygame.display.set_caption("Blackjack Place your Bet")
