@@ -77,7 +77,7 @@ def play_hand(bet, chips, player, dealer, deck):
     if player.value == 21:
         # blackjack text
         gf.add_text('Blackjack!!! You WIN!!', font, bj_settings.screen, 600, 460, bj_settings.BLACK)
-        gf.add_text('Press space to continue', font, bj_settings.screen, 600, 500, bj_settings.BLACK)
+
         pygame.display.update()
         blackjack = True
         double_prize = True
@@ -85,7 +85,7 @@ def play_hand(bet, chips, player, dealer, deck):
     # dealer has natual 21 and player doesnt
     if dealer.value == 21 and player.value != 21:
         gf.add_text('Dealer just got Blackjack. You lose.', font, bj_settings.screen, 100, 460, bj_settings.BLACK)
-        gf.add_text('Press space to continue', font, bj_settings.screen, 100, 500, bj_settings.BLACK)
+
         bj_settings.screen.blit(dcard2, (dcardx + 75, dcardy))
         pygame.display.update()
         blackjack = True
@@ -113,8 +113,7 @@ def play_hand(bet, chips, player, dealer, deck):
 
                     if player.value > 21:
                         gf.add_text('OVER 21! You lose.', font, bj_settings.screen, 100, 460, bj_settings.BLACK)
-                        gf.add_text('Press space to continue', font, bj_settings.screen, 100, 500,
-                                    bj_settings.BLACK)
+
                         pygame.display.update()
                         player_bust = True
 
@@ -139,10 +138,9 @@ def play_hand(bet, chips, player, dealer, deck):
                         pygame.display.update()
 
                         if dealer.value > 21:
-                            gf.add_text('DEALER BUST! YOU WIN!', font, bj_settings.screen, 100, 500,
+                            gf.add_text('DEALER BUST! YOU WIN!', font, bj_settings.screen, 100, 460,
                                         bj_settings.BLACK)
-                            gf.add_text('Press space to continue', font, bj_settings.screen, 100, 500,
-                                        bj_settings.BLACK)
+
                             pygame.display.update()
                             dealer_bust = True
 
@@ -155,20 +153,17 @@ def play_hand(bet, chips, player, dealer, deck):
                         if dealer.value <= 21 and player.value <= 21:
                             if player.value > dealer.value:
                                 gf.add_text('YOU WIN!', font, bj_settings.screen, 100, 460, bj_settings.BLACK)
-                                gf.add_text('Press space to continue', font, bj_settings.screen, 100, 500,
-                                            bj_settings.BLACK)
+
                                 pygame.display.update()
                                 player_wins = True
                             if player.value < dealer.value:
                                 gf.add_text('Dealer wins.', font, bj_settings.screen, 100, 460, bj_settings.BLACK)
-                                gf.add_text('Press space to continue', font, bj_settings.screen, 100, 500,
-                                            bj_settings.BLACK)
+
                                 pygame.display.update()
                                 dealer_wins = True
                             if player.value == dealer.value:
                                 gf.add_text('Tie!', font, bj_settings.screen, 100, 460, bj_settings.BLACK)
-                                gf.add_text('Press space to continue', font, bj_settings.screen, 100, 500,
-                                            bj_settings.BLACK)
+
                                 pygame.display.update()
                                 push = True
 
@@ -177,7 +172,7 @@ def play_hand(bet, chips, player, dealer, deck):
                 if player.value == 21:
                     # blackjack text
                     gf.add_text('Blackjack!!! You WIN!!', font, bj_settings.screen, 100, 460, bj_settings.BLACK)
-                    gf.add_text('Press space to continue', font, bj_settings.screen, 100, 500, bj_settings.BLACK)
+
                     pygame.display.update()
                     blackjack = True
                     double_prize = True
