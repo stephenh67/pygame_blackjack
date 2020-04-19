@@ -184,33 +184,33 @@ def play_hand(bet, chips, player, dealer, deck):
 
             # Game logic to allow to allow button presses on keyboard.
             if event.type == pygame.MOUSEBUTTONUP and double_prize is True:
-                time.sleep(3)
+                if next_hand_rect.collidepoint(event.pos):
 
-                del player.cards[:]
-                del dealer.cards[:]
-                player.value = 0
-                dealer.value = 0
-                return bet * 2
+                    del player.cards[:]
+                    del dealer.cards[:]
+                    player.value = 0
+                    dealer.value = 0
+                    return bet * 2
             if event.type == pygame.MOUSEBUTTONUP and dealer.value == 21 or event.type == pygame.MOUSEBUTTONUP and \
                     player.value > 21 or event.type == pygame.MOUSEBUTTONUP and dealer_wins is True:
-                time.sleep(3)
-                del player.cards[:]
-                del dealer.cards[:]
-                player.value = 0
-                dealer.value = 0
-                return -bet
+                if next_hand_rect.collidepoint(event.pos):
+                    del player.cards[:]
+                    del dealer.cards[:]
+                    player.value = 0
+                    dealer.value = 0
+                    return -bet
             if event.type == pygame.MOUSEBUTTONUP and dealer.value > 21 or event.type == pygame.MOUSEBUTTONUP and \
                     player_wins is True:
-                time.sleep(3)
-                del player.cards[:]
-                del dealer.cards[:]
-                player.value = 0
-                dealer.value = 0
-                return bet
+                if next_hand_rect.collidepoint(event.pos):
+                    del player.cards[:]
+                    del dealer.cards[:]
+                    player.value = 0
+                    dealer.value = 0
+                    return bet
             if event.type == pygame.MOUSEBUTTONUP and push is True:
-                time.sleep(3)
-                del player.cards[:]
-                del dealer.cards[:]
-                player.value = 0
-                dealer.value = 0
-                return 0
+                if next_hand_rect.collidepoint(event.pos):
+                    del player.cards[:]
+                    del dealer.cards[:]
+                    player.value = 0
+                    dealer.value = 0
+                    return 0
