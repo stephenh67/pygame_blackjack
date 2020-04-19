@@ -39,7 +39,7 @@ def play():
                     player = Hand()
                     dealer = Hand()
                     deck = Deck()
-                    new_bet.take_bet(100, player, dealer, deck)
+                    new_bet.take_bet(1000, player, dealer, deck)
 
 
 if __name__ == '__main__':
