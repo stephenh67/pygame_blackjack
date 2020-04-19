@@ -37,15 +37,22 @@ def play_hand(bet, chips, player, dealer, deck):
 
 
     # hit and stand buttons
-    hit_button = pygame.image.load('images/hit.png')
+    hit_button = pygame.image.load('images/hit_button.png')
     hit_rect = hit_button.get_rect()
     hit_rect.topleft = ((600, 500))
     bj_settings.screen.blit(hit_button, (600, 500))
 
-    stand_button = pygame.image.load('images/stand.png')
+    stand_button = pygame.image.load('images/stand_button.png')
     stand_rect = stand_button.get_rect()
     stand_rect.topleft = ((850, 500))
     bj_settings.screen.blit(stand_button, (850, 500))
+
+    next_hand_button = pygame.image.load('images/next_hand_button.png')
+    next_hand_rect = next_hand_button.get_rect()
+    next_hand_rect.topleft = ((850, 600))
+    bj_settings.screen.blit(next_hand_button, (850, 600))
+    
+
 
     # load dealer cards
     dcardx, dcardy = (100, 100)
@@ -122,7 +129,7 @@ def play_hand(bet, chips, player, dealer, deck):
 
                     # Win conditions
                     while dealer.value < 17 and stand is True and hand_done is False:
-                        gf.add_text('Dealer is drawing . . .', font, bj_settings.screen, 100, 420,
+                        gf.add_text('Dealer is drawing . . .', font, bj_settings.screen, 100, 500,
                                     bj_settings.BLACK)
                         time.sleep(1)
                         dcardx += 75
@@ -132,7 +139,7 @@ def play_hand(bet, chips, player, dealer, deck):
                         pygame.display.update()
 
                         if dealer.value > 21:
-                            gf.add_text('DEALER BUST! YOU WIN!', font, bj_settings.screen, 100, 460,
+                            gf.add_text('DEALER BUST! YOU WIN!', font, bj_settings.screen, 100, 500,
                                         bj_settings.BLACK)
                             gf.add_text('Press space to continue', font, bj_settings.screen, 100, 500,
                                         bj_settings.BLACK)
@@ -147,8 +154,8 @@ def play_hand(bet, chips, player, dealer, deck):
                             and blackjack is False and hand_done is True:
                         if dealer.value <= 21 and player.value <= 21:
                             if player.value > dealer.value:
-                                gf.add_text('YOU WIN!', font, bj_settings.screen, 600, 460, bj_settings.BLACK)
-                                gf.add_text('Press space to continue', font, bj_settings.screen, 600, 500,
+                                gf.add_text('YOU WIN!', font, bj_settings.screen, 100, 460, bj_settings.BLACK)
+                                gf.add_text('Press space to continue', font, bj_settings.screen, 100, 500,
                                             bj_settings.BLACK)
                                 pygame.display.update()
                                 player_wins = True
@@ -159,8 +166,8 @@ def play_hand(bet, chips, player, dealer, deck):
                                 pygame.display.update()
                                 dealer_wins = True
                             if player.value == dealer.value:
-                                gf.add_text('Tie!', font, bj_settings.screen, 600, 460, bj_settings.BLACK)
-                                gf.add_text('Press space to continue', font, bj_settings.screen, 600, 500,
+                                gf.add_text('Tie!', font, bj_settings.screen, 100, 460, bj_settings.BLACK)
+                                gf.add_text('Press space to continue', font, bj_settings.screen, 100, 500,
                                             bj_settings.BLACK)
                                 pygame.display.update()
                                 push = True
@@ -169,8 +176,8 @@ def play_hand(bet, chips, player, dealer, deck):
                 # check if player has blackjack
                 if player.value == 21:
                     # blackjack text
-                    gf.add_text('Blackjack!!! You WIN!!', font, bj_settings.screen, 600, 460, bj_settings.BLACK)
-                    gf.add_text('Press space to continue', font, bj_settings.screen, 600, 500, bj_settings.BLACK)
+                    gf.add_text('Blackjack!!! You WIN!!', font, bj_settings.screen, 100, 460, bj_settings.BLACK)
+                    gf.add_text('Press space to continue', font, bj_settings.screen, 100, 500, bj_settings.BLACK)
                     pygame.display.update()
                     blackjack = True
                     double_prize = True
