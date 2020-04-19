@@ -76,7 +76,12 @@ def play_hand(bet, chips, player, dealer, deck):
     # check if player has blackjack
     if player.value == 21:
         # blackjack text
-        gf.add_text('Blackjack!!! You WIN!!', font, bj_settings.screen, 600, 460, bj_settings.BLACK)
+
+        # add blackjack image
+        blackjack = pygame.image.load('images/blackjack.png')
+        blackjack_rect = blackjack.get_rect()
+        blackjack_rect.topleft = ((150, 420))
+        bj_settings.screen.blit(blackjack, (150, 420))
 
         pygame.display.update()
         blackjack = True
@@ -84,7 +89,11 @@ def play_hand(bet, chips, player, dealer, deck):
 
     # dealer has natual 21 and player doesnt
     if dealer.value == 21 and player.value != 21:
-        gf.add_text('Dealer just got Blackjack. You lose.', font, bj_settings.screen, 100, 460, bj_settings.BLACK)
+
+        dealer_blackjack = pygame.image.load('images/dealer_blackjack.png')
+        dealer_blackjack_rect = dealer_blackjack.get_rect()
+        dealer_blackjack_rect.topleft = ((150, 420))
+        bj_settings.screen.blit(dealer_blackjack, (150, 420))
 
         bj_settings.screen.blit(dcard2, (dcardx + 75, dcardy))
         pygame.display.update()
@@ -104,7 +113,6 @@ def play_hand(bet, chips, player, dealer, deck):
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if hit_rect.collidepoint(event.pos) and player.value < 22 and player.value != 21 and stand is False:
-                    print('hit')
                     player.add_card(deck.deal())
                     bj_settings.screen.blit(pygame.image.load('images/' + str(player.cards[-1]) + '.png'),
                                             (pcardx, pcardy))
@@ -112,14 +120,18 @@ def play_hand(bet, chips, player, dealer, deck):
                     pygame.display.update()
 
                     if player.value > 21:
-                        gf.add_text('OVER 21! You lose.', font, bj_settings.screen, 100, 460, bj_settings.BLACK)
+
+                        # display bust image
+                        bust = pygame.image.load('images/bust.png')
+                        bust_rect = bust.get_rect()
+                        bust_rect.topleft = ((150, 420))
+                        bj_settings.screen.blit(bust, (150, 420))
 
                         pygame.display.update()
                         player_bust = True
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if stand_rect.collidepoint(event.pos) and player.value < 22 and blackjack is False and stand is False:
-                    print('stand')
                     dcardx += 75
                     bj_settings.screen.blit(pygame.image.load('images/' + str(dealer.cards[1]) + '.png'),
                                             (dcardx, dcardy))
@@ -128,8 +140,7 @@ def play_hand(bet, chips, player, dealer, deck):
 
                     # Win conditions
                     while dealer.value < 17 and stand is True and hand_done is False:
-                        gf.add_text('Dealer is drawing . . .', font, bj_settings.screen, 100, 500,
-                                    bj_settings.BLACK)
+
                         time.sleep(1)
                         dcardx += 75
                         dealer.add_card(deck.deal())
@@ -138,8 +149,11 @@ def play_hand(bet, chips, player, dealer, deck):
                         pygame.display.update()
 
                         if dealer.value > 21:
-                            gf.add_text('DEALER BUST! YOU WIN!', font, bj_settings.screen, 100, 460,
-                                        bj_settings.BLACK)
+
+                            dealer_bust = pygame.image.load('images/dealer_bust.png')
+                            dealer_bust_rect = dealer_bust.get_rect()
+                            dealer_bust_rect.topleft = ((150, 420))
+                            bj_settings.screen.blit(dealer_bust, (150, 420))
 
                             pygame.display.update()
                             dealer_bust = True
@@ -152,17 +166,30 @@ def play_hand(bet, chips, player, dealer, deck):
                             and blackjack is False and hand_done is True:
                         if dealer.value <= 21 and player.value <= 21:
                             if player.value > dealer.value:
-                                gf.add_text('YOU WIN!', font, bj_settings.screen, 100, 460, bj_settings.BLACK)
+
+                                # add blackjack image
+                                you_win = pygame.image.load('images/you_win.png')
+                                you_win_rect = you_win.get_rect()
+                                you_win_rect.topleft = ((150, 420))
+                                bj_settings.screen.blit(you_win, (150, 420))
 
                                 pygame.display.update()
                                 player_wins = True
                             if player.value < dealer.value:
-                                gf.add_text('Dealer wins.', font, bj_settings.screen, 100, 460, bj_settings.BLACK)
+
+                                dealer_wins = pygame.image.load('images/dealer_wins.png')
+                                dealer_wins_rect = dealer_wins.get_rect()
+                                dealer_wins_rect.topleft = ((150, 420))
+                                bj_settings.screen.blit(dealer_wins, (150, 420))
 
                                 pygame.display.update()
                                 dealer_wins = True
                             if player.value == dealer.value:
-                                gf.add_text('Tie!', font, bj_settings.screen, 100, 460, bj_settings.BLACK)
+
+                                push = pygame.image.load('images/push.png')
+                                push_rect = push.get_rect()
+                                push_rect.topleft = ((150, 420))
+                                bj_settings.screen.blit(push, (150, 420))
 
                                 pygame.display.update()
                                 push = True
@@ -171,7 +198,12 @@ def play_hand(bet, chips, player, dealer, deck):
                 # check if player has blackjack
                 if player.value == 21:
                     # blackjack text
-                    gf.add_text('Blackjack!!! You WIN!!', font, bj_settings.screen, 100, 460, bj_settings.BLACK)
+
+                    # add blackjack image
+                    blackjack = pygame.image.load('images/blackjack.png')
+                    blackjack_rect = blackjack.get_rect()
+                    blackjack_rect.topleft = ((150, 420))
+                    bj_settings.screen.blit(blackjack, (150, 420))
 
                     pygame.display.update()
                     blackjack = True
