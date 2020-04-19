@@ -112,8 +112,8 @@ def play_hand(bet, chips, player, dealer, deck):
                     pygame.display.update()
 
                     if player.value > 21:
-                        gf.add_text('OVER 21! You lose.', font, bj_settings.screen, 600, 460, bj_settings.BLACK)
-                        gf.add_text('Press space to continue', font, bj_settings.screen, 600, 500,
+                        gf.add_text('OVER 21! You lose.', font, bj_settings.screen, 100, 460, bj_settings.BLACK)
+                        gf.add_text('Press space to continue', font, bj_settings.screen, 100, 500,
                                     bj_settings.BLACK)
                         pygame.display.update()
                         player_bust = True
