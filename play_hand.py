@@ -111,6 +111,7 @@ def play_hand(bet, chips, player, dealer, deck):
                 pygame.quit()
                 sys.exit()
 
+            # on mousedown allow player to draw cards, checks if over 21
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if hit_rect.collidepoint(event.pos) and player.value < 22 and player.value != 21 and stand is False:
                     player.add_card(deck.deal())
@@ -120,7 +121,6 @@ def play_hand(bet, chips, player, dealer, deck):
                     pygame.display.update()
 
                     if player.value > 21:
-
                         # display bust image
                         bust = pygame.image.load('images/bust.png')
                         bust_rect = bust.get_rect()
@@ -158,9 +158,9 @@ def play_hand(bet, chips, player, dealer, deck):
                             pygame.display.update()
                             dealer_bust = True
 
-                    if dealer.value >= 17:
-                        pygame.display.update()
-                        hand_done = True
+                        if dealer.value >= 17:
+                            pygame.display.update()
+                            hand_done = True
 
                     if dealer_bust is False and stand is True and player_bust is False \
                             and blackjack is False and hand_done is True:
